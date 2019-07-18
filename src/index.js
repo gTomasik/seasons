@@ -18,17 +18,26 @@ class App extends React.Component {
     )
   }
 
-  render() {
-      if(this.state.errorMessage && !this.state.lat){
-        return <div>Error:{this.state.errorMessage}</div>
-      }
+  renderContent(){
+    if(this.state.errorMessage && !this.state.lat){
+      return <div>Error:{this.state.errorMessage}</div>
+    }
 
-      if(!this.state.errorMessage && this.state.lat){
-        return <SeasonDisplay lat={this.state.lat}/>
-      }
-    
-      return <Spinner />
+    if(!this.state.errorMessage && this.state.lat){
+      return <SeasonDisplay lat={this.state.lat}/>
+    }
+  
+    return <Spinner message = "Please allow geolocation"/>
+  }    
+  
+  render() {
+    return(
+      <div className="border red">
+        {this.renderContent()}
+      </div>
+    )
   }
+  
 }
 
 
